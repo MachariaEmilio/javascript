@@ -65,17 +65,17 @@
 
     <script>
       function getTotal() {
-        let pvalue = document.getElementById("price").value;
-        let qvalue = document.getElementById("quantity").value;
-        let total_field = document.getElementById("totalfield");
+        let pvalue = document.querySelector("#price").value;
+        let qvalue = document.querySelector("#quantity").value;
+        let total_field = document.querySelector("#totalfield");
         let label_value =document.querySelector(".quantity-label")
 
         let totalvalue = pvalue * qvalue;
 
-        total_field.textContent = totalvalue;
-        label_value.textContent= qvalue;
+        total_field.textContent = `$${totalvalue}`;
+        label_value.textContent=  qvalue;
       }
     </script>
-    >
+    
   </body>
 </html>
