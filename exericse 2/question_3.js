@@ -5,5 +5,4 @@ let music = {
   music_name: "kushusha nyavu",
 };
 
-
-console.log("The length of movie object is: " + Object.keys(music).length)
+console.log("The length of movie object is: " + Object.keys(music).length);
