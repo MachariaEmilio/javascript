@@ -4,70 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-      </head>
-  <body >
+  </head>
+  <body>
     <script>
       const entries = document.createElement("div");
       const heading = document.createElement("h2");
       const nameinput = document.createElement("input");
       const button = document.createElement("button");
       const maininfo = document.createElement("div");
-      const imginfo = document .createElement("div")
-      const  userinfo = document.createElement("div")
-      const user_image = document.createElement("img")
-      const username =document.createElement("h3")
-      const user_repo =document.createElement("p")
-      const userlocation = document.createElement("p")
-     
+      const imginfo = document.createElement("div");
+      const userinfo = document.createElement("div");
+      const user_image = document.createElement("img");
+      const username = document.createElement("h3");
+      const user_repo = document.createElement("p");
+      const userlocation = document.createElement("p");
+
       document.body.appendChild(heading);
       document.body.appendChild(entries);
       entries.appendChild(nameinput);
       entries.appendChild(button);
-      document.body.appendChild(maininfo)
-      maininfo.appendChild(imginfo)
-      maininfo.appendChild(userinfo)
-      imginfo.appendChild(user_image)
-      userinfo.appendChild(username)
-      userinfo.appendChild(user_repo)
-      username.appendChild(userlocation)
-      document.body.style.backgroundColor ="#092981"
-       document.body.style.display = "flex";
-       document.body.style.flexDirection="column"
-       document.body.style.alignItems ="center"
-      entries.style.display ="flex"
-      entries.style.flexDirection ="row"
-      entries.style.margin="0px"
-      entries.style.padding="0px"   
-      entries.style.height ="50px"
-      entries.style.width = "auto"
-      nameinput.style.height ="36px"
-      nameinput.style.width ="190px"
-      button.style.height ="40px"
-      button.style.width= "100px"
-      
-      maininfo.style.height ="200px"
-      maininfo.style.width="350px"
-      maininfo.style.display="flex"
+      document.body.appendChild(maininfo);
+      maininfo.appendChild(imginfo);
+      maininfo.appendChild(userinfo);
+      imginfo.appendChild(user_image);
+      userinfo.appendChild(username);
+      userinfo.appendChild(user_repo);
+      userinfo.appendChild(userlocation);
+      document.body.style.backgroundColor = "#092981";
+      document.body.style.display = "flex";
+      document.body.style.flexDirection = "column";
+      document.body.style.alignItems = "center";
+      document.body.style.color = "white";
+      entries.style.display = "flex";
+      entries.style.flexDirection = "row";
+      entries.style.margin = "0px";
+      entries.style.padding = "0px";
+      entries.style.height = "50px";
+      entries.style.width = "auto";
+      nameinput.style.height = "36px";
+      nameinput.style.width = "190px";
+      button.style.height = "40px";
+      button.style.width = "100px";
 
-      user_image.style.height= "150px"
-      user_image.style.width= "150px"
-      user_image.style.borderRadius ="50%"
-      button.style.border ="2px solid white"
-      button.style.background = "black"
-      button.style.color ="white"
+      maininfo.style.height = "200px";
+      maininfo.style.width = "350px";
+      maininfo.style.display = "flex";
+
+      user_image.style.height = "150px";
+      user_image.style.width = "150px";
+      user_image.style.borderRadius = "50%";
+      button.style.border = "2px solid white";
+      button.style.background = "black";
+      button.style.color = "white";
 
       // imginfo.style.backgroundColor ="pink"
-      imginfo.style.height = "200px"     
-      imginfo.style.width = "150px"
+      imginfo.style.height = "200px";
+      imginfo.style.width = "150px";
 
       // userinfo.style.backgroundColor ="blue";
-      userinfo.style.height= "200px"
-      userinfo.style.width ="350px"
+      userinfo.style.height = "200px";
+      userinfo.style.width = "350px";
 
-      userinfo.fontSize ="30px"
+      userinfo.fontSize = "30px";
 
-
-      heading.textContent ="GITHUB SEARCH TOOL "
+      heading.textContent = "GITHUB SEARCH TOOL ";
       button.textContent = "search a github user ";
       button.setAttribute("onclick", "fetch_api()");
 
@@ -77,24 +77,29 @@
 
       document.body.appendChild(name);
 
+
       const fetch_api = async () => {
         let uservalue = nameinput.value;
         console.log(uservalue);
-
         const data = await fetch(
           `https://api.github.com/users/${uservalue}`
         ).then((res) =>
           res.json().then((res) => {
-            // useryear = res.created_at.Date()
-            
             user_image.src = res.avatar_url;
-           
-            username.textContent = `${res.name} ${res.login}`
-            user_repo.textContent = `${res.public_repos} repositories  `
-      }));
+
+            username.textContent = `${res.name} ${res.login}`;
+            user_repo.textContent = `${res.public_repos} repositories  `;
+            userlocation.textContent = res.location;
+          })
+        );
       };
-      
-      // fetch_api();
+
+      nameinput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          button.click();
+        }
+      });
+
     </script>
   </body>
 </html>
