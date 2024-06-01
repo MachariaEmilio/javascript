@@ -12,38 +12,54 @@ const todayimage1 = document.querySelector(".todayimage1");
 const todayimage2 = document.querySelector(".todayimage2");
 const todayimage3 = document.querySelector(".todayimage3");
 const todayimage4 = document.querySelector(".todayimage4");
+const day1 = document.querySelector(".day1");
+const day2 = document.querySelector(".day2");
+const day3 = document.querySelector(".day3");
+const day4 = document.querySelector(".day4");
 
-submit.addEventListener("click", async function () {
-  placesearch = placeinput.value;
+async function weather(placesearch){
 
+  const key = ``;
   const data = await fetch(
     `https://api.openweathermap.org/data/2.5/forecast?q=${placesearch}&appid=${key}`
   ).then((res) => res.json());
 
-  console.log(data.city.name);
-  console.log(data.list[0].main.temp_max);
-  console.log(data.list[0].weather[0].description);
+  // console.log(data.city.name);
+  // console.log(data.list[0].main.temp_max);
+  // console.log(data.list[0].weather[0].description);
 
   let results = [];
-  let founddate;
   let today = new Date().getHours();
-  console.log(today);
+  // console.log(today);
   let data1 = data.list;
   for (let i = 0; i < data1.length; i++) {
     let founddate = new Date(data.list[i].dt_txt).getHours();
 
     if (founddate <= today && today - founddate <= 2) {
-      console.log(founddate);
-      console.log(today);
+      // console.log(founddate);
+      // console.log(today);
       results.push(data1[i]);
     }
   }
-  console.log(results);
+  // console.log(results);
   const temp = results[0].main.temp_max - 273;
   const temp1 = results[1].main.temp_max - 273;
   const temp2 = results[2].main.temp_max - 273;
   const temp3 = results[3].main.temp_max - 273;
   const temp4 = results[4].main.temp_max - 273;
+
+  const date1 = new Date(results[1].dt * 1000).toLocaleString("en-US", {
+    weekday: "long",
+  });
+  const date2 = new Date(results[2].dt * 1000).toLocaleString("en-US", {
+    weekday: "long",
+  });
+  const date3 = new Date(results[3].dt * 1000).toLocaleString("en-US", {
+    weekday: "long",
+  });
+  const date4 = new Date(results[4].dt * 1000).toLocaleString("en-US", {
+    weekday: "long",
+  });
 
   placename.textContent = data.city.name;
   temperature.textContent = `temperature ${temp.toFixed(2)}°C`;
@@ -58,4 +74,17 @@ submit.addEventListener("click", async function () {
   folowingday2.textContent = `${temp2.toFixed(2)}°C`;
   folowingday3.textContent = `${temp3.toFixed(2)}°C`;
   folowingday4.textContent = `${temp4.toFixed(2)}°C`;
+  day1.textContent = date1;
+  day2.textContent = date2;
+  day3.textContent = date3;
+  day4.textContent = date4;
+
+}
+
+weather("nyahururu")
+
+submit.addEventListener("click", async function () {
+  placesearch = placeinput.value;
+  
+  weather(placesearch)
 });
