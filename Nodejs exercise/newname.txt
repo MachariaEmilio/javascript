@@ -1,2 +1,0 @@
-This is written using writefile keyword 
-This is git add ended text
